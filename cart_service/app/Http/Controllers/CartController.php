@@ -47,15 +47,16 @@ class CartController extends Controller
         try {
             //code...
             $productCart = array_reduce($this->cartList, function ($total, $item) use ($id) {
-                if ($item['id'] == $id) {
-                    $total += $item['quantity'];
-                }
-                return $total;
-            },0);
-            return response()->json([
-                'id'=> $id,
-                'quantity' => $productCart
-            ]);
+                return $item['id'] == $id;
+            });
+
+            if (!empty($product)) {
+                return response()->json(array_values($product)[0]);
+            }
+
+            // Jika tidak ditemukan, kembalikan pesan error
+            return response()->json(['message' => 'Product not found'], 404);
+            
         } catch (\Throwable $th) {
             Log::error([
                 'message' => $th->getMessage(),
