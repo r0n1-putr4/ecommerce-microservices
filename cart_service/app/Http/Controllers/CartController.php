@@ -45,7 +45,7 @@ class CartController extends Controller
 
     public function show($id){
         try {
-            //tes
+            //tes dua
             $product = array_filter($this->cartList, function ($item) use ($id) {
                 return $item['id'] == $id;
             });
