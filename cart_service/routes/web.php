@@ -9,5 +9,5 @@ $router->get('/', function () use ($router) {
     ]);
 });
 
-$router->get('/cart', 'CartController@index');
-$router->get('/cart/{id}', 'CartController@show');
+$router->get('/carts', 'CartController@index');
+$router->get('/carts/{id}', 'CartController@show');

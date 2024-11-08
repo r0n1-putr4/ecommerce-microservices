@@ -1,59 +1,45 @@
 const express = require("express");
 const app = express();
 
-// dummy data
+//dummy data
 products = [
-    {
-        success: 1,
-        message: "Data ditemukan",
-        data: [
-            {
-                id: 1,
-                name: "Produk 1",
-                description: "Ini adalah produk 1",
-                price: 1000,
-            },
-            {
-                id: 2,
-                name: "Produk 2",
-                description: "Ini adalah produk 2",
-                price: 2000,
-            },
-            {
-                id: 3,
-                name: "Produk 3",
-                description: "Ini adalah produk 3",
-                price: 3000,
-            },
-        ],
-    },
+  {
+    id: 1,
+    name: "Macbook Pro M2",
+    description: "This is a Macbook Pro M2",
+    price: 20000000,
+  },
+  {
+    id: 2,
+    name: "Iphone 16 Pro",
+    description: "This is an Iphone 16 Pro",
+    price: 15000000,
+  },
+  {
+    id: 3,
+    name: "Samsung Galaxy S20",
+    description: "This is a Samsung Galaxy S20",
+    price: 12000000,
+  },
 ];
 
-// get all data products
 app.get("/products", (req, res) => {
   res.send(products);
 });
 
-
-// get single data products by id
 app.get("/products/:id", (req, res) => {
   const id = req.params.id;
-  const product = products[0].data.find((p) => p.id == id);
+  const product = products.find((product) => product.id == id);
 
   if (!product) {
-    return res.status(404).json(
-        {
-            "success" : 0,
-            "message" : "Data tidak ditemukan"
-        }
-    );
+    return res.status(404).json({
+      message: "Product not found",
+    });
   }
 
-  res.send(product);
+  req.send(product);
 });
 
-// server running
 app.listen(3000, () => {
-  console.log("Server running http://localhost:3000/products");
+  console.log("Product service is running http://localhost:3000 on port 3000");
 });
-
