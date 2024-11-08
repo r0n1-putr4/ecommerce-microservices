@@ -46,7 +46,7 @@ class CartController extends Controller
     public function show($id){
         try {
             //code...
-            $productCart = array_reduce($this->cartList, function ($total, $item) use ($id) {
+            $product = array_filter($this->cartList, function ($item) use ($id) {
                 return $item['id'] == $id;
             });
 
@@ -56,7 +56,7 @@ class CartController extends Controller
 
             // Jika tidak ditemukan, kembalikan pesan error
             return response()->json(['message' => 'Product not found'], 404);
-            
+
         } catch (\Throwable $th) {
             Log::error([
                 'message' => $th->getMessage(),
