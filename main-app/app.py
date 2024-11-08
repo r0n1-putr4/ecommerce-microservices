@@ -16,14 +16,14 @@ def get_sold_products(product_id):
     try:
         response = requests.get(f'http://localhost:3003/carts/{product_id}')
         response.raise_for_status()
-        return response.json().get('total_quantity', 0)
+        return response.json().get('quantity', 0)
     except requests.exceptions.RequestException as e:
         print(f"Error fetching sold product data: {e}")
         return {"error": "Failed to fetch sold product data"}
 
 def get_reviews(product_id):
     try:
-        response = requests.get(f'http://localhost:3003/products/{product_id}/reviews')
+        response = requests.get(f'http://127.0.0.1:3003/products/{product_id}/reviews')
         response.raise_for_status()
         return response.json()
     except requests.exceptions.RequestException as e:

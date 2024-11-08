@@ -5,7 +5,7 @@ const app = express();
 products = [
   {
     id: 1,
-    name: "Produk 1",
+    name: "TV",
     description: "Ini adalah produk 1",
     price: 1000,
   },

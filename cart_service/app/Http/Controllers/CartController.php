@@ -43,9 +43,28 @@ class CartController extends Controller
         }
     }
 
-    public function show($id){
+    public function show($id)
+    {
         try {
+
+            $productCart = array_reduce(
+                $this->cartList,
+                function ($total, $item) use ($id) {
+                    if ($item['id'] == $id) {
+                        $total += $item['quantity'];
+                    }
+                    return $total;
+                },
+                0
+            );
+
+            return response()->json([
+                "product" => $id,
+                "quantity" => $productCart
+            ]);
+
             //tes dua
+            /*
             $product = array_filter($this->cartList, function ($item) use ($id) {
                 return $item['id'] == $id;
             });
@@ -56,7 +75,7 @@ class CartController extends Controller
 
             // Jika tidak ditemukan, kembalikan pesan error
             return response()->json(['message' => 'Product not found'], 404);
-
+            */
         } catch (\Throwable $th) {
             Log::error([
                 'message' => $th->getMessage(),
