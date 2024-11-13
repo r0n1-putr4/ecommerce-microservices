@@ -10,22 +10,26 @@ product_reviews = [
     {
         "id": 1,
         "product_id": 1,
-        "review": "Great product"
+        "review": "Great product",
+        "rating": 5
     },
     {
         "id": 2,
         "product_id": 1,
-        "review": "Pretty good"
+        "review": "Pretty good",
+        "rating": 4
     },
     {
         "id": 3,
         "product_id": 1,
-        "review": "Pretty bad"
+        "review": "Pretty bad",
+        "rating": 2
     },
     {
         "id": 4,
         "product_id": 2,
-        "review": "Good product"
+        "review": "Good product",
+        "rating": 4
     },
 ]
 
