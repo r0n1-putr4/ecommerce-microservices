@@ -25,7 +25,7 @@ products = [
 
 // get all data products
 app.get("/products", (req, res) => {
-  res.send(products);
+  res.send({ success: 1, message: "Data berhasil diditemukan", products });
 });
 
 // get single data products by id
@@ -40,7 +40,7 @@ app.get("/products/:id", (req, res) => {
     });
   }
 
-  res.send(product);
+  res.send({ success: 1, message: "Data berhasil diditemukan", product});
 });
 
 // server running
