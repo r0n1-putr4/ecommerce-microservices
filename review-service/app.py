@@ -45,10 +45,9 @@ def get_product_reviews(product_id):
     
     # Mengembalikan review jika ada, atau mengembalikan pesan error jika tidak ditemukan
     if filtered_reviews:
-        return jsonify({
-                    "success":True,
+        return jsonify({"success":True,
                     "message":"Success",
-                    "data":filtered_reviews})
+                    "data":product_reviews})
     else:
         return jsonify({
             "success": False,
@@ -57,4 +56,4 @@ def get_product_reviews(product_id):
 
 # Menjalankan aplikasi Flask pada port 3003
 if __name__ == '__main__':
-    app.run(debug=True, port=3003, host="0.0.0.0")
+    app.run(debug=True, port=3002, host="0.0.0.0")

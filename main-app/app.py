@@ -5,16 +5,18 @@ app = Flask(__name__)
 
 def get_products(product_id):
     try:
+        #folder product-service
         response = requests.get(f'http://localhost:3000/products/{product_id}')
         response.raise_for_status()  # Cek jika ada error HTTP
-        return response.json()
+        return response.json().get('data', {})
     except requests.exceptions.RequestException as e:
         print(f"Error fetching product data: {e}")
         return {"error": "Failed to fetch product data"}
 
 def get_sold_products(product_id):
     try:
-        response = requests.get(f'http://localhost:3003/carts/{product_id}')
+        #folder cart-service
+        response = requests.get(f'http://localhost:3001/carts/{product_id}')
         response.raise_for_status()
         return response.json().get('quantity', 0)
     except requests.exceptions.RequestException as e:
@@ -23,9 +25,10 @@ def get_sold_products(product_id):
 
 def get_reviews(product_id):
     try:
-        response = requests.get(f'http://127.0.0.1:3003/products/reviews/{product_id}/')
+         #folder review-service
+        response = requests.get(f'http://127.0.0.1:3002/products/reviews/{product_id}')
         response.raise_for_status()
-        return response.json()
+        return response.json().get('data', {})
     except requests.exceptions.RequestException as e:
         print(f"Error fetching review data: {e}")
         return {"error": "Failed to fetch review data"}
@@ -44,4 +47,4 @@ def get_product_info(product_id):
     return render_template('product.html', product=product, cart=cart, review=review)
 
 if __name__ == '__main__':
-    app.run(debug=True, port=3004)
+    app.run(debug=True, port=3003)
