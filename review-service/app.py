@@ -32,19 +32,26 @@ product_reviews = [
 # Endpoint untuk mendapatkan semua review
 @app.route('/reviews', methods=['GET'])
 def get_reviews():
-    return jsonify(product_reviews)
+    return jsonify({
+                    "success":True,
+                    "message":"Success",
+                    "data":product_reviews})
 
 # Endpoint untuk mendapatkan review berdasarkan ID produk
-@app.route('/products/<int:product_id>/reviews', methods=['GET'])
+@app.route('/products/reviews/<int:product_id>', methods=['GET'])
 def get_product_reviews(product_id):
     # Menyaring review berdasarkan product_id
     filtered_reviews = [review for review in product_reviews if review['product_id'] == product_id]
     
     # Mengembalikan review jika ada, atau mengembalikan pesan error jika tidak ditemukan
     if filtered_reviews:
-        return jsonify(filtered_reviews)
+        return jsonify({
+                    "success":True,
+                    "message":"Success",
+                    "data":filtered_reviews})
     else:
         return jsonify({
+            "success": False,
             "message": "Product not found",
         }), 404
 

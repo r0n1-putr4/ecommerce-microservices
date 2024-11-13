@@ -23,7 +23,7 @@ def get_sold_products(product_id):
 
 def get_reviews(product_id):
     try:
-        response = requests.get(f'http://127.0.0.1:3003/products/{product_id}/reviews')
+        response = requests.get(f'http://127.0.0.1:3003/products/reviews/{product_id}/')
         response.raise_for_status()
         return response.json()
     except requests.exceptions.RequestException as e:
