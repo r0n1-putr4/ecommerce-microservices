@@ -16,5 +16,7 @@ COPY app.js /app
 #expose port 3000   
 EXPOSE 3000
 
+
+
 #run app
 CMD ["node", "app.js"]
